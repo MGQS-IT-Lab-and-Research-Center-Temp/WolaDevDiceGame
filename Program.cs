@@ -117,6 +117,13 @@ string startOrStop = Console.ReadLine()!;
 
 switch (startOrStop)
 {
+    case "Yes":
+    case "yes":
+    case "Y":
+    case "y":
+        Console.Write("");
+    break;
+
     case "N":
     case "No":
         Console.Write("=====\nThank you for playing our Dice Game.\nHappy to have you back soon.\n=====");
@@ -130,13 +137,31 @@ switch (startOrStop)
     break;
 
     default:
-        Console.Write("=====\nThank you for attempting, your input can't be read.\nTry Again!!!\n=====\n");
-        // startOrStop = Console.ReadLine()!;
+
+        if (startOrStop.Equals("Y", StringComparison.OrdinalIgnoreCase) || startOrStop.Equals("Yes", StringComparison.OrdinalIgnoreCase))
+        {
+            Console.Write("=====\nThank you for attempting, your input can't be read.\nTry Again!!!\n=====\nPlease Try Again, Enter 'y' or 'n' to start or stop the game: ");
+            startOrStop = Console.ReadLine()!;
+        } 
+        else if (startOrStop.Equals("N", StringComparison.OrdinalIgnoreCase) || startOrStop.Equals("No", StringComparison.OrdinalIgnoreCase))
+        {
+            Console.Write("=====\nThank you for playing our Dice Game.\nHappy to have you back soon.\n=====");
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Sorry, You inputed wrong value, start again and enjoy!!!");
+            Console.ResetColor();
+            // return;
+            Console.Write("Enter 'y' or 'n' to start or stop the game: ");
+            startOrStop = Console.ReadLine()!;
+
+        }
     break;
 }
 
-Console.Write("Enter 'y' to play again or 'n' to stop: ");
-startOrStop = Console.ReadLine()!;
+// Console.Write("Enter 'y' to play again or 'n' to stop: ");
+// startOrStop = Console.ReadLine()!;
 
 while (startOrStop.Equals("y", StringComparison.OrdinalIgnoreCase))
 {
@@ -233,26 +258,37 @@ while (startOrStop.Equals("y", StringComparison.OrdinalIgnoreCase))
             return;
     }
 
-    // while (startOrStop.Equals("No", StringComparison.OrdinalIgnoreCase) || startGame.Equals("n", StringComparison.OrdinalIgnoreCase))
-    // {
-    //     Console.Write("=====\nThank you for playing our Dice Game.\nHappy to have you back soon.\n=====");
-    //     return;
-    // }
+    while (startOrStop.Equals("No", StringComparison.OrdinalIgnoreCase) || startGame.Equals("n", StringComparison.OrdinalIgnoreCase))
+    {
+        Console.Write("=====\nThank you for playing our Dice Game.\nHappy to have you back soon.\n=====");
+        return;
+    }
 
 }
 
-// while (!(startOrStop.Equals("y", StringComparison.OrdinalIgnoreCase)))
-// {
-//     Console.WriteLine("You entered an unknown value, please try again.");
-// }
-
-switch (startOrStop)
+while (!(startOrStop.Equals("Yes", StringComparison.OrdinalIgnoreCase) || startOrStop.Equals("Y", StringComparison.OrdinalIgnoreCase)))
 {
-    default:
-        Console.WriteLine("You entered an unknown value, please try again.");
-    break;
+    Console.Write("Type Y (Yes) to Start or N (No) to Stop Playing: ");
+    startOrStop = Console.ReadLine()!;
+
+    if (startOrStop.Equals("Y", StringComparison.OrdinalIgnoreCase) || startOrStop.Equals("Yes", StringComparison.OrdinalIgnoreCase))
+    {
+        // Start the game
+    }
+    else if(startOrStop.Equals("N", StringComparison.OrdinalIgnoreCase) || startOrStop.Equals("No", StringComparison.OrdinalIgnoreCase))
+    {
+        Console.WriteLine("=====\nThank you for playing our Dice Game.\nHappy to have you back soon.\n=====");
+        return;
+    }
+    else
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("=====\nSORRY!!! YOU INPUTED A WRONG COMMAND.\n=====");
+        Console.ResetColor();
+    }
+
 }
-startGame = 
+
 
 // • If input value different 'Start' or 'S'.
 // else if (!(startGame.Equals("Start", StringComparison.OrdinalIgnoreCase) || startGame.Equals("S", StringComparison.OrdinalIgnoreCase)))
